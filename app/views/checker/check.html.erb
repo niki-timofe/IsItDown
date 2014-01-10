@@ -1,0 +1,6 @@
+It looks like <%= link_to @site, "http://#{@site}", :target => '_blank' %> is
+<% case @code when -1 %> <span style="color: red">down</span>.
+<% else %> <span style="color: green">up</span>.
+<% end %>
+<br>
+<%= link_to 'Check', root_path %> another.
