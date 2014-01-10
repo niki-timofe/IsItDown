@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1553765370">
+  <component name="DataSourceManagerImpl" format="xml" hash="1344054749">
     <data-source source="LOCAL" name="Rails IsItDown: development" uuid="e72a8fc8-dd32-4dad-8cb0-8d1585c508e0">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:postgresql:db/development.sqlite3</jdbc-url>
       <libraries>
         <library>
           <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/sqlite-jdbc-3.7.2.jar</url>
         </library>
       </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="Rails IsItDown: test" uuid="01457c5c-1ad4-4d0e-9a57-681ee4cf1240">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:db/test.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails IsItDown: production" uuid="af053bab-ed35-4f42-9a13-3a156d3d13be">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:db/production.sqlite3</jdbc-url>
+      <libraries />
     </data-source>
   </component>
 </project>
