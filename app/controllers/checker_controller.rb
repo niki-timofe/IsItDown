@@ -18,17 +18,23 @@ class CheckerController < ApplicationController
     host = (/^(?:(?:http|https):\/\/)?([а-яa-z0-9]+(?:[\-\.][а-яa-z0-9]+)*\.[а-яa-z]{2,5})(?::([0-9]{1,5}))?(?:\/.*)?$/ix).match(params[:s])[1]
 
     @site = host
+    @code = Rails.cache.read host
 
-    http = Net::HTTP.new(SimpleIDN.to_ascii(host), 80)
-    http.read_timeout = 0.5
-    http.open_timeout = 1
+    if @code.blank?
 
-    begin
-      response = http.request_get('/')
-      @code = response.code
-    rescue => e
-      logger.debug e.to_s + SimpleIDN.to_ascii(host)
-      @code = -1
+      http = Net::HTTP.new(SimpleIDN.to_ascii(host), 80)
+      http.read_timeout = 0.5
+      http.open_timeout = 1
+
+      begin
+        response = http.request_get('/')
+        @code = response.code
+      rescue => e
+        logger.debug e.to_s + SimpleIDN.to_ascii(host)
+        @code = -1
+      end
+
+      Rails.cache.write host, @code, :timeToLive => 5.minutes
     end
 
     respond_to do |format|

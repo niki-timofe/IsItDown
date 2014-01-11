@@ -3,6 +3,7 @@ IsItDown::Application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
+  config.cache_store = :dalli_store, ENV['MEMCACHEDCLOUD_SERVERS'].split(','), {:username => ENV['MEMCACHEDCLOUD_USERNAME'], :password => ENV['MEMCACHEDCLOUD_PASSWORD']}
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both thread web servers
