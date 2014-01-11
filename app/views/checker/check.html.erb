@@ -2,11 +2,17 @@ It looks like <%= link_to @site, "http://#{@site}", :target => '_blank' %>
 <% if @cached['cached_at'].blank? %>is
 <% else %>was
 <% end %>
-<% case @cached[:code] when -1 %> <span style="color: red">down</span>
-    <% unless @cached['cached_at'].blank? %> <%= time_ago_in_words Time.at @cached['cached_at'] %> ago.
+<% case @cached[:code] when -1 %>
+    <% if @cached['cached_at'].blank? %>
+        <span style="color: red">down</span>.
+    <% else %>
+        <span style="color: red">down</span> <%= time_ago_in_words Time.at @cached['cached_at'] %> ago.
     <% end %>
-<% else %> <span style="color: green">up</span>
-    <% unless @cached['cached_at'].blank? %> <%= time_ago_in_words Time.at @cached['cached_at'] %> ago.
+<% else %>
+    <% if @cached['cached_at'].blank? %>
+        <span style="color: green">up</span>.
+    <% else %>
+        <span style="color: green">up</span> <%= time_ago_in_words Time.at @cached['cached_at'] %> ago.
     <% end %>
 <% end %>
 <br>
