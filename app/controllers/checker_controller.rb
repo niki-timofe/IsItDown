@@ -31,13 +31,13 @@ class CheckerController < ApplicationController
 
       begin
         response = http.request_get('/')
-        @cached[:code] = response.code
+        @cached['code'] = response.code
       rescue => e
         logger.debug e.to_s + SimpleIDN.to_ascii(host)
-        @cached[:code] = -1
+        @cached['code'] = -1
       end
 
-      Rails.cache.write host, {:code => @cached[:code], :cached_at => Time.now.to_i}.to_json.to_s, :timeToLive => 5.minutes
+      Rails.cache.write host, {:code => @cached['code'], :cached_at => Time.now.to_i}.to_json.to_s, :expires_in => 5.minutes
     end
 
     logger.debug @cached['cached_at']

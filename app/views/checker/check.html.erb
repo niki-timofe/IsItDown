@@ -2,7 +2,7 @@ It looks like <%= link_to @site, "http://#{@site}", :target => '_blank' %>
 <% if @cached['cached_at'].blank? %>is
 <% else %>was
 <% end %>
-<% case @cached[:code] when -1 %>
+<% case @cached['code'] when -1 %>
     <% if @cached['cached_at'].blank? %>
         <span style="color: red">down</span>.
     <% else %>
