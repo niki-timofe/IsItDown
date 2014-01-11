@@ -18,9 +18,12 @@ class CheckerController < ApplicationController
     host = (/^(?:(?:http|https):\/\/)?([а-яa-z0-9]+(?:[\-\.][а-яa-z0-9]+)*\.[а-яa-z]{2,5})(?::([0-9]{1,5}))?(?:\/.*)?$/ix).match(params[:s])[1]
 
     @site = host
-    @code = Rails.cache.read host
+    cache = Rails.cache.read host
+    logger.debug cache
+    @cached = JSON.parse(cache) unless cache.blank?
 
-    if @code.blank?
+    if @cached.blank?
+      @cached = Hash.new
 
       http = Net::HTTP.new(SimpleIDN.to_ascii(host), 80)
       http.read_timeout = 0.5
@@ -28,14 +31,16 @@ class CheckerController < ApplicationController
 
       begin
         response = http.request_get('/')
-        @code = response.code
+        @cached[:code] = response.code
       rescue => e
         logger.debug e.to_s + SimpleIDN.to_ascii(host)
-        @code = -1
+        @cached[:code] = -1
       end
 
-      Rails.cache.write host, @code, :timeToLive => 5.minutes
+      Rails.cache.write host, {:code => @cached[:code], :cached_at => Time.now.to_i}.to_json.to_s, :timeToLive => 5.minutes
     end
+
+    logger.debug @cached['cached_at']
 
     respond_to do |format|
       format.html
