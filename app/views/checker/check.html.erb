@@ -9,7 +9,7 @@ It looks like <%= link_to @site, "http://#{@site}", :target => '_blank' %> is
     <% if @cached['cached_at'].blank? %>
         <span style="color: green">up</span>.
     <% else %>
-        <span style="color: green">up</span> <%= time_ago_in_words Time.at @cached['cached_at'] %> ago.
+        <span style="color: green" title="<%= time_ago_in_words Time.at @cached['cached_at'] %> ago">up</span>.
     <% end %>
 <% end %>
 <br>
