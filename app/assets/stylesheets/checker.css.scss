@@ -61,3 +61,11 @@ br {
   line-height: 50pt;
   line-height: 10 vmin;
 }
+
+span[title] {
+  border-bottom: 2pt dotted #444;
+  cursor: help;
+  &:hover {
+    border-bottom: 2pt dotted #444;
+  }
+}
