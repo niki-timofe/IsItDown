@@ -1,15 +1,15 @@
 It looks like <%= link_to @site, "http://#{@site}", :target => '_blank' %> is
 <% case @cached['code'] when -1 %>
     <% if @cached['cached_at'].blank? %>
-        <span style="color: red">down</span>.
+        <span class="down">down</span>.
     <% else %>
-        <span style="color: red" title="<%= time_ago_in_words Time.at @cached['cached_at'] %> ago">down</span>.
+        <span class="down" title="<%= time_ago_in_words Time.at @cached['cached_at'] %> ago">down</span>.
     <% end %>
 <% else %>
     <% if @cached['cached_at'].blank? %>
-        <span style="color: green">up</span>.
+        <span class="up">up</span>.
     <% else %>
-        <span style="color: green" title="<%= time_ago_in_words Time.at @cached['cached_at'] %> ago">up</span>.
+        <span class="up" title="<%= time_ago_in_words Time.at @cached['cached_at'] %> ago">up</span>.
     <% end %>
 <% end %>
 <br>

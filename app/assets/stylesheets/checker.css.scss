@@ -9,6 +9,7 @@ input[type="submit"] {
   border-bottom: 2pt solid #444;
   font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
   font-size: 100%;
+  cursor: pointer;
   &:hover {
     border: none;
     padding: 0 4pt !important;
@@ -59,13 +60,29 @@ content {
 
 br {
   line-height: 50pt;
-  line-height: 10 vmin;
+  line-height: 9 vmin;
 }
 
 span[title] {
+
   border-bottom: 2pt dotted #444;
   cursor: help;
   &:hover {
+    &.down {
+      color: darken(red, 7);
+    }
+    &.up {
+      color: lighten(green, 7);
+    }
     border-bottom: 2pt dotted #444;
+  }
+}
+
+span {
+  &.down {
+    color: red;
+  }
+  &.up {
+    color: green;
   }
 }
