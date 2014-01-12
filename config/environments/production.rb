@@ -13,6 +13,7 @@ IsItDown::Application.configure do
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local = false
+  #noinspection RubyResolve
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
@@ -28,9 +29,11 @@ IsItDown::Application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
+  #noinspection RubyResolve
   config.assets.compile = false
 
   # Generate digests for assets URLs.
+  #noinspection RubyResolve
   config.assets.digest = true
 
   # Version of your assets, change this if you want to expire all your assets.
@@ -68,9 +71,11 @@ IsItDown::Application.configure do
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found).
+  #noinspection RubyResolve
   config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners.
+  #noinspection RubyResolve
   config.active_support.deprecation = :notify
 
   # Disable automatic flushing of the log to improve performance.
