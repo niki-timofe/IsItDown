@@ -1,3 +1,4 @@
 <%= form_tag '/', :method => 'get', 'data-turboform' => '' do %>
-    Is <%= url_field_tag :s, 'google.com', :onclick => 'if($(this).val()=="google.com"){$(this).val("");};' %> <%= submit_tag 'down?' %>
+    <%= hidden_field_tag :from_form, true %>
+    Is <%= url_field_tag :s, nil, :placeholder => 'example.org' %> <%= submit_tag 'down?' %>
 <% end %>

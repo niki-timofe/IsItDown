@@ -2,15 +2,16 @@ require 'net/http'
 
 class CheckerController < ApplicationController
   def index
-    unless params[:s].blank?
+    if !params[:s].blank?
       matcher = (/^(?:(?:http|https):\/\/)?([а-яa-z0-9]+(?:[\-\.][а-яa-z0-9]+)*\.[а-яa-z]{2,5})(?::([0-9]{1,5}))?(?:\/.*)?$/ix).match(params[:s])
       if matcher.nil?
         redirect_to root_path
       else
         host = matcher[1]
-        logger.info 'Redirecting ************'
         redirect_to "/#{CGI.escape host}"
       end
+    elsif params[:from_form]
+      redirect_to '/example.org'
     end
   end
 
@@ -48,10 +49,11 @@ class CheckerController < ApplicationController
   end
 
   private
-  # Using a private method to encapsulate the permissible parameters is just a good pattern
-  # since you'll be able to reuse the same permit list between create and update. Also, you
-  # can specialize this method with per-user checking of permissible attributes.
+# Using a private method to encapsulate the permissible parameters is just a good pattern
+# since you'll be able to reuse the same permit list between create and update. Also, you
+# can specialize this method with per-user checking of permissible attributes.
   def checker_params
-    params.permit(:s)
+    params.permit(:s, :from_form)
   end
+
 end
